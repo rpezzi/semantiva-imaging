@@ -39,7 +39,7 @@ class ImageDataSource(DataSource):
         return cls()._get_data(*args, **kwargs)
 
     @staticmethod
-    def output_data_type():
+    def output_data_type() -> type[ImageDataType]:
         return ImageDataType
 
 
@@ -74,7 +74,8 @@ class ImageStackSource(DataSource):
         """
         return self._get_data(*args, **kwargs)
 
-    def output_data_type(self):
+    @classmethod
+    def output_data_type(cls) -> type[ImageStackDataType]:  # type: ignore
         return ImageStackDataType
 
 
@@ -109,7 +110,7 @@ class ImageDataSink(DataSink):
         """
         self._send_data(data, *args, **kwargs)
 
-    def input_data_type(self):
+    def input_data_type(self) -> type[ImageDataType]:  # type: ignore
         return ImageDataType
 
 
@@ -144,7 +145,7 @@ class ImageStackDataSink(DataSink):
         """
         self._send_data(data, *args, **kwargs)
 
-    def input_data_type(self):
+    def input_data_type(self) -> type[ImageStackDataType]:  # type: ignore
         return ImageStackDataType
 
 
@@ -183,7 +184,7 @@ class ImagePayloadSink(PayloadSink):
         """
         self._send_payload(data, context, *args, **kwargs)
 
-    def input_data_type(self):
+    def input_data_type(self) -> type[ImageDataType]:  # type: ignore
         """
         Returns the expected input data type for the data.
 
@@ -228,7 +229,7 @@ class ImageStackPayloadSource(PayloadSource):
         """
         return self._get_payload(*args, **kwargs)
 
-    def output_data_type(self):
+    def output_data_type(self) -> type[ImageStackDataType]:  # type: ignore
         """
         Returns the expected output data type for the data.
 
